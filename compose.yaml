@@ -1,0 +1,13 @@
+version: "3"
+services:
+  prometheus:
+    image: bitnami/prometheus:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - "./prometheus.yaml:/etc/prometheus/prometheus.yml"
+
+  hashbrowns:
+    image: alexellis2/hash-browns
+    ports:
+      - 8080:8080
