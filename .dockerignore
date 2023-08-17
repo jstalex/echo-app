@@ -1,0 +1,5 @@
+Makefile
+Dockerfile
+compose.yaml
+.gitignore
+/vendor/
