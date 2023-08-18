@@ -1,7 +1,8 @@
 package main
 
 import (
-	"github.com/labstack/gommon/log"
+	"log"
+
 	"metrics/internal/app"
 )
 

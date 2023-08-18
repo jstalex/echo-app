@@ -12,3 +12,11 @@ services:
     image: backend:1
     ports:
       - 80:80
+
+
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - '3000:3000'

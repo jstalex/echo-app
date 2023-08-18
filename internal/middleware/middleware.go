@@ -13,7 +13,6 @@ func UserCheck(next echo.HandlerFunc) echo.HandlerFunc {
 		if strings.EqualFold(name, "vasya") {
 			metrics.AddVasya()
 		}
-
 		return next(ctx)
 	}
 }
