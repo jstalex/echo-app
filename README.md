@@ -1,5 +1,14 @@
 # echo-app
 
+**Stack:**
+
+* Echo
+* Postgres/pgx
+* Prometheus
+* Grafana
+* Docker
+
+
 ## Quickstart
 
 At first run node_exporter on host machine
