@@ -2,7 +2,6 @@ package storage
 
 import (
 	"context"
-	"os"
 
 	"github.com/jackc/pgx/v5"
 )
@@ -22,8 +21,8 @@ type Storage struct {
 	conn *pgx.Conn
 }
 
-func Open(ctx context.Context) (*Storage, error) {
-	conn, err := pgx.Connect(ctx, os.Getenv("DATABASE_URL"))
+func Open(ctx context.Context, url string) (*Storage, error) {
+	conn, err := pgx.Connect(ctx, url)
 	if err != nil {
 		return nil, err
 	}

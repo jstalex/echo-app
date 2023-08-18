@@ -9,6 +9,7 @@ import (
 	"metrics/internal/endpoint"
 	"metrics/internal/metrics"
 	"metrics/internal/middleware"
+	"metrics/internal/storage"
 )
 
 type App struct {
@@ -16,10 +17,10 @@ type App struct {
 	echo *echo.Echo
 }
 
-func New() (*App, error) {
+func New(s *storage.Storage) (*App, error) {
 	a := &App{
 		echo: echo.New(),
-		e:    endpoint.New(),
+		e:    endpoint.New(s),
 	}
 
 	a.echo.Use(echoprometheus.NewMiddleware("metric_app"))
@@ -31,8 +32,12 @@ func New() (*App, error) {
 
 	a.echo.GET("/hello", a.e.Hello)
 	a.echo.GET("/time", a.e.WhatTime)
-	a.echo.GET("/metrics", echoprometheus.NewHandler())
 	a.echo.POST("/name", a.e.Name, middleware.UserCheck)
+
+	a.echo.POST("/users", a.e.AddUser)
+	a.echo.GET("/users", a.e.AllUsers)
+
+	a.echo.GET("/metrics", echoprometheus.NewHandler())
 
 	return a, nil
 }

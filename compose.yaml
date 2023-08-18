@@ -13,7 +13,10 @@ services:
     ports:
       - 80:80
     environment:
-      DATABASE_URL: "postgres://admin:admin@db:5432/data"
+      PG_NAME: data
+      PG_USER: admin
+      PG_PASSWORD: admin
+      PG_HOST: db
     depends_on:
       db:
         condition: service_healthy
@@ -33,6 +36,6 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready", "-U", "bruh" ]
+      test: [ "CMD-SHELL", "pg_isready", "-U", "admin" ]
     ports:
       - 5432:5432
